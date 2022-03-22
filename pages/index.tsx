@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button, Table } from "react-bootstrap";
-import { Header } from "../src/components/Header/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getUserThunk } from "../src/redux/User/UserThunk";
-import { sGetCurrentPage, sGetUserList } from "../src/redux/User/UserSelector";
-import { User } from "../src/type/user";
-import { next, previos } from "../src/redux/User/UserAction";
-import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from "../src/constant/page";
+import { Button, Table } from 'react-bootstrap';
+import { Header } from '../src/components/Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getUserThunk } from '../src/redux/User/UserThunk';
+import { sGetCurrentPage, sGetUserList } from '../src/redux/User/UserSelector';
+import { User } from '../src/type/user';
+import { next, previous } from '../src/redux/User/UserAction';
+import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from '../src/constant/page';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Home = () => {
     dispatch(getUserThunk(currentPage));
   }, [currentPage]);
   const handlePrevious = () => {
-    dispatch(previos());
+    dispatch(previous());
   };
   const handleNext = () => {
     if (currentPage < MAX_PAGE_NUMBER) {
@@ -31,11 +31,11 @@ const Home = () => {
       <div className="pagination justify-content-center mt-3">
         {currentPage > MIN_PAGE_NUMBER ? (
           <Button onClick={handlePrevious} size="sm" variant="warning">
-            Previos
+            Previous
           </Button>
         ) : (
           <Button disabled size="sm" variant="warning">
-            Previos
+            Previous
           </Button>
         )}
 

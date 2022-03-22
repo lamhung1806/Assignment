@@ -24,7 +24,7 @@ const User = (state: UserReduxState = UserInitialState, action: IUserAction) => 
         currentPage: state.currentPage + 1,
       };
 
-    case UserAction.PREVIOS_PAGE:
+    case UserAction.PREVIOUS_PAGE:
       return {
         ...state,
         currentPage: state.currentPage - 1,

@@ -2,7 +2,7 @@ import { User } from './../../type/user';
 export enum UserAction {
   GET_USER = 'GET_USER',
   NEXT_PAGE = 'NEXT_PAGE',
-  PREVIOS_PAGE = 'PREVIOS_PAGE',
+  PREVIOUS_PAGE = 'PREVIOUS_PAGE',
 }
 
 export const getUser = (data: User[]) => {
@@ -16,9 +16,9 @@ export const next = () => {
     type: UserAction.NEXT_PAGE,
   };
 };
-export const previos = () => {
+export const previous = () => {
   return {
-    type: UserAction.PREVIOS_PAGE,
+    type: UserAction.PREVIOUS_PAGE,
   };
 };
 export interface IUserAction {
