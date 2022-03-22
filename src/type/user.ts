@@ -3,7 +3,7 @@ export interface User {
   name: Name;
   location: Location;
   email: string;
-  login: Login;
+  login: ILoginParams;
   dob: {
     date: string;
     age: number;
@@ -25,16 +25,6 @@ export interface User {
   };
   nat: String;
 }
-export interface ApiUser {
-  results: User[];
-  info: {
-    seed: string;
-    results: number;
-    page: number;
-    version: string;
-  };
-}
-
 export interface Name {
   title: string;
   first: string;
@@ -65,7 +55,7 @@ interface Timezone {
   offset: string;
   description?: string;
 }
-interface Login {
+interface ILoginParams {
   uuid: string;
   username: string;
   password: string;
