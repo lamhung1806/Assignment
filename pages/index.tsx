@@ -4,14 +4,14 @@ import { Header } from "../src/components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserThunk } from "../src/redux/User/UserThunk";
-import { sGetCurrentPage, sUserList } from "../src/redux/User/UserSelector";
+import { sGetCurrentPage, sGetUserList } from "../src/redux/User/UserSelector";
 import { User } from "../src/type/user";
 import { next, previos } from "../src/redux/User/UserAction";
 import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from "../src/constant/page";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const userList = useSelector(sUserList);
+  const userList = useSelector(sGetUserList);
   const currentPage = useSelector(sGetCurrentPage);
   useEffect(() => {
     dispatch(getUserThunk(currentPage));
