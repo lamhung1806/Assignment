@@ -1,3 +1,12 @@
+export interface ActionResponse {
+  results: User[];
+  info: {
+    seed: string;
+    results: number;
+    page: number;
+    version: string;
+  };
+}
 export interface User {
   gender: string;
   name: Name;

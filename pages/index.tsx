@@ -24,6 +24,7 @@ const Home = () => {
       dispatch(next());
     }
   };
+
   return (
     <div>
       <Header />

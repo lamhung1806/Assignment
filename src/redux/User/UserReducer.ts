@@ -1,5 +1,5 @@
-import { User } from "../../type/user";
-import { IUserAction, UserACtion } from "./UserAction";
+import { User } from '../../type/user';
+import { IUserAction, UserAction } from './UserAction';
 
 export interface UserReduxState {
   userList: User[];
@@ -10,24 +10,21 @@ const UserInitialState: UserReduxState = {
   userList: [],
   currentPage: 1,
 };
-const User = (
-  state: UserReduxState = UserInitialState,
-  action: IUserAction
-) => {
+const User = (state: UserReduxState = UserInitialState, action: IUserAction) => {
   switch (action.type) {
-    case UserACtion.GET_USER:
+    case UserAction.GET_USER:
       return {
         ...state,
-        userList: action.data.results,
+        userList: action.data,
       };
 
-    case UserACtion.NEXT_PAGE:
+    case UserAction.NEXT_PAGE:
       return {
         ...state,
         currentPage: state.currentPage + 1,
       };
 
-    case UserACtion.PREVIOS_PAGE:
+    case UserAction.PREVIOS_PAGE:
       return {
         ...state,
         currentPage: state.currentPage - 1,
