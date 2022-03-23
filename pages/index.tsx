@@ -2,7 +2,7 @@
 import { Button, Table } from 'react-bootstrap';
 import { Header } from '../src/components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getUserThunk } from '../src/redux/User/UserThunk';
 import { sGetCurrentPage, sGetUserList } from '../src/redux/User/UserSelector';
 import { User } from '../src/type/user';
@@ -13,18 +13,18 @@ const Home = () => {
   const dispatch = useDispatch();
   const userList = useSelector(sGetUserList);
   const currentPage = useSelector(sGetCurrentPage);
+
   useEffect(() => {
     dispatch(getUserThunk(currentPage));
   }, [currentPage]);
   const handlePrevious = () => {
     dispatch(previous());
   };
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentPage < MAX_PAGE_NUMBER) {
       dispatch(next());
     }
-  };
-
+  }, [currentPage]);
   return (
     <div>
       <Header />
