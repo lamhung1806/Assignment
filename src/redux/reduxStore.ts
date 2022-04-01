@@ -1,17 +1,14 @@
-import User, { UserReduxState } from "./User/UserReducer";
-import {combineReducers,createStore,applyMiddleware} from "redux"
-import thunk from "redux-thunk"
+import User, { UserReduxState } from './User/UserReducer';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 export interface RootState {
-   User: UserReduxState
+  User: UserReduxState;
 }
 
-
 const rootReducer = combineReducers<RootState>({
-    User:User
-})
+  User: User,
+});
 
-
-const store = createStore(rootReducer,applyMiddleware(thunk))
-
+const store = createStore(rootReducer, applyMiddleware(thunk));
 export default store;

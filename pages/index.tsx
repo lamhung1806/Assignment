@@ -9,7 +9,7 @@ import { User } from '../src/type/user';
 import { next, previous } from '../src/redux/User/UserAction';
 import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from '../src/constant/page';
 
-const Home = () => {
+const Home = (props: any) => {
   const dispatch = useDispatch();
   const userList = useSelector(sGetUserList);
   const currentPage = useSelector(sGetCurrentPage);
@@ -17,9 +17,9 @@ const Home = () => {
   useEffect(() => {
     dispatch(getUserThunk(currentPage));
   }, [currentPage]);
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     dispatch(previous());
-  };
+  }, [currentPage]);
   const handleNext = useCallback(() => {
     if (currentPage < MAX_PAGE_NUMBER) {
       dispatch(next());
@@ -56,9 +56,9 @@ const Home = () => {
           {userList.map((data: User, id: number) => (
             <tr key={id}>
               <td>{`${data.name.title} ${data.name.first} ${data.name.last}`}</td>
-              <td>{data.login.username}</td>
+              <td>{data.login?.username}</td>
               <td>
-                <img src={`${data.picture.thumbnail}`} />
+                <img src={`${data.picture?.thumbnail}`} />
               </td>
             </tr>
           ))}
