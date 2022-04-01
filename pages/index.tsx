@@ -9,7 +9,7 @@ import { User } from '../src/type/user';
 import { next, previous } from '../src/redux/User/UserAction';
 import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from '../src/constant/page';
 
-const Home = (props: any) => {
+const Home = () => {
   const dispatch = useDispatch();
   const userList = useSelector(sGetUserList);
   const currentPage = useSelector(sGetCurrentPage);

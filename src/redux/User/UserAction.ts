@@ -5,7 +5,7 @@ export enum UserAction {
   PREVIOUS_PAGE = 'PREVIOUS_PAGE',
 }
 
-export const getUser = (data: any) => {
+export const getUser = (data: User[]) => {
   return {
     type: UserAction.GET_USER,
     data,
