@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { useCallback, useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { Header } from '../src/components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { getUserThunk } from '../src/redux/User/UserThunk';
+import { Header } from '../src/components/Header/Header';
+import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from '../src/constant/page';
+import { getUserAsync, next, previous } from '../src/redux/User/UserAction';
 import { sGetCurrentPage, sGetUserList } from '../src/redux/User/UserSelector';
 import { User } from '../src/type/user';
-import { next, previous } from '../src/redux/User/UserAction';
-import { MAX_PAGE_NUMBER, MIN_PAGE_NUMBER } from '../src/constant/page';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,11 +14,13 @@ const Home = () => {
   const currentPage = useSelector(sGetCurrentPage);
 
   useEffect(() => {
-    dispatch(getUserThunk(currentPage));
-  }, [currentPage]);
+    dispatch(getUserAsync());
+  }, [dispatch]);
+
   const handlePrevious = useCallback(() => {
     dispatch(previous());
   }, [currentPage]);
+
   const handleNext = useCallback(() => {
     if (currentPage < MAX_PAGE_NUMBER) {
       dispatch(next());
